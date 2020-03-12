@@ -183,3 +183,82 @@ curl --location --request POST 'http://getdev.test/api/auth/refresh' \
     "expires_in": 3600
 }
 ```
+
+##### `POST /api/password/email`
+
+Sends password reset email to a registered user
+
+Request:
+
+-   **email**: required|string|email - Email of a registered user
+
+```bash
+curl --location --request POST 'http://getdev.test/api/password/email' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data-raw '{
+	"email": "aleemisiaka@gmail.com"
+}'
+
+```
+
+Response
+
+```json
+{ "message": "We have emailed your password reset link!" }
+```
+
+##### `POST /api/password/email`
+
+Sends password reset email to a registered user
+
+Request:
+
+-   **email**: required|string|email - Email of a registered user
+
+```bash
+curl --location --request POST 'http://getdev.test/api/password/email' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data-raw '{
+	"email": "aleemisiaka@gmail.com"
+}'
+
+```
+
+Response
+
+```json
+{ "message": "We have emailed your password reset link!" }
+```
+
+##### `POST /api/password/reset`
+
+Resets user's password with the email in the body of the request.
+
+Request:
+
+-   **email**: required|string|email - Email of a registered user
+-   **token**: required|string| - Token sent to the provided email after a `POST /api/password/email`
+-   **password**: required|string|min:8 - New password
+-   **password_confirmation**: required|string|min:8 - Confirms the new password
+
+```bash
+curl --location --request POST 'http://getdev.test/api/password/reset' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--data-raw '{
+	"password": "12345678",
+	"password_confirmation": "12345678",
+	"token": "2d689c3e71983fd7eef9a508ce885a31e817a7687b2b594552a6f50452767fee",
+	"email": "aleemisiaka@gmail.com"
+}'
+```
+
+Response
+
+```json
+{
+    "message": "Your password has been reset!"
+}
+```

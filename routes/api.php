@@ -20,6 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', 'AuthController@register');
 
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
