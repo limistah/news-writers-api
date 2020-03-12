@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreUser;
 
 class AuthController extends Controller
 {
@@ -26,13 +27,9 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function register(StoreUser $request)
     {
-        $user = User::create([
-            'email' => $request->email,
-            'password' => $request->password,
-            'name' => $request->name,
-        ]);
+        $user = User::create($request->input());
 
         $token = auth()->login($user);
 
