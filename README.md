@@ -63,3 +63,21 @@ php artisan key:generate
 ```
 
 The first command installs the project's PHP dependencies, the second generates application key for the project.
+
+### Authentication
+
+This project uses Laravel's authentication scaffolding, and adds a layer with JWT using the [jwt-auth](https://jwt-auth.readthedocs.io/en/docs/laravel-installation/) package.
+
+To complete the JWT setup, add the following configuration into `.env` file.
+
+```bash
+JWT_SECRET=
+JWT_PUBLIC_KEY=
+JWT_PRIVATE_KEY=
+```
+
+Then run the code below:
+
+```bash
+php artisan jwt:secret
+```
