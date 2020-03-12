@@ -81,3 +81,12 @@ Then run the code below:
 ```bash
 php artisan jwt:secret
 ```
+
+#### Endpoints
+
+`/register` Registers a new user into the database. The below fields are expected in the body of the request:
+
+-   **name**: required|string
+-   **email**: required|string|email
+-   **password**: required|string|min:8
+-   **bio**: required|string
