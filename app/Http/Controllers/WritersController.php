@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\WritersResource;
+use App\User;
 use Illuminate\Http\Request;
 
 class WritersController extends Controller
@@ -18,7 +20,8 @@ class WritersController extends Controller
      */
     public function index()
     {
-        return response()->json(["message" => "Returns all writers"]);
+        return WritersResource::collection(User::with("articles")->paginate(100));
+        // return response()->json(["message" => "Returns all writers"]);
     }
 
     /**
