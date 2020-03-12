@@ -301,3 +301,85 @@ Response
     }
 }
 ```
+
+### Writers Endpoints
+
+#### `GET /api/writers`
+
+Returns all the writers in the application
+
+Request
+
+```bash
+curl --location --request GET 'http://getdev.test/api/writers' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4NDA1NjUwNywiZXhwIjoxNTg0MDYwMTA3LCJuYmYiOjE1ODQwNTY1MDcsImp0aSI6InJ5NjB3ZmdrZ3A3QVBtTGEiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.3_5GTqThscqjIOhZeybiusJRomOcNdlO_aK1M6oh8Jc'
+```
+
+Response
+
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Avery Moore",
+            "email": "ziemann.magdalena@example.net",
+            "bio": "Ut eligendi quo earum.",
+            "articles_count": 0
+        },
+        {
+            "id": 2,
+            "name": "Dr. Clara Emard III",
+            "email": "moen.myles@example.com",
+            "bio": "Quia ullam cumque et voluptatem velit. Saepe a quasi perferendis vero animi quia.",
+            "articles_count": 0
+        }
+        // ...
+    ],
+    "links": {
+        "first": "http://getdev.test/api/writers?page=1",
+        "last": "http://getdev.test/api/writers?page=16",
+        "prev": null,
+        "next": "http://getdev.test/api/writers?page=2"
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 16,
+        "path": "http://getdev.test/api/writers",
+        "per_page": 10,
+        "to": 10,
+        "total": 151
+    }
+}
+```
+
+#### `GET /api/writers/{writer_id}`
+
+Returns a single writer with the specified `$id` in the route parameter
+
+Request
+
+```bash
+curl --location --request GET 'http://getdev.test/api/writers/102' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4NDA1NjUwNywiZXhwIjoxNTg0MDYwMTA3LCJuYmYiOjE1ODQwNTY1MDcsImp0aSI6InJ5NjB3ZmdrZ3A3QVBtTGEiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.3_5GTqThscqjIOhZeybiusJRomOcNdlO_aK1M6oh8Jc'
+```
+
+Response
+
+```json
+{
+    "id": 102,
+    "name": "Kristian Steuber PhD",
+    "email": "reynolds.elva@example.net",
+    "email_verified_at": "2020-03-12T22:01:37.000000Z",
+    "created_at": "2020-03-12T22:01:37.000000Z",
+    "updated_at": "2020-03-12T22:01:37.000000Z",
+    "bio": "Nisi voluptatem error maxime qui in aspernatur. Omnis aut consequatur eaque aut aut veniam cupiditate.",
+    "articles_count": 6
+}
+```

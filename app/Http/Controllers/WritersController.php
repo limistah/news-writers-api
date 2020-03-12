@@ -24,7 +24,7 @@ class WritersController extends Controller
     }
 
     /**
-     * Returns an writer by the specified user id.
+     * Returns a writer by the specified user id.
      *
      * @param  int  $writer
      * @return \Illuminate\Http\Response
