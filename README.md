@@ -262,3 +262,42 @@ Response
     "message": "Your password has been reset!"
 }
 ```
+
+### Article Endpoints
+
+##### `POST /api/articles`
+
+Creates a new Article for the authenticated user
+
+Request:
+
+-   **title**: required|string|min:5 - Title of the article
+-   **body**: required|string|min:10 - Content of the article
+
+```bash
+curl --location --request POST 'http://getdev.test/api/articles' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4NDA0OTQ3NywiZXhwIjoxNTg0MDUzMDc3LCJuYmYiOjE1ODQwNDk0NzcsImp0aSI6Ind2ZWNQOTdJZndCa1lXUW8iLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.TjZBC6dxHnGk-eqThjWrBYwbmtxpvfIdZad84axQT8c' \
+--data-raw '{
+	"title": "This is the title of the article",
+	"body": "Body of the article"
+}'
+```
+
+Response
+
+```json
+{
+    "message": "Article saved successfully",
+    "data": {
+        "title": "This is the title of the article",
+        "body": "Body of the article",
+        "author_name": "Aleem Isiaka",
+        "author_id": 51,
+        "updated_at": "2020-03-12T22:17:23.000000Z",
+        "created_at": "2020-03-12T22:17:23.000000Z",
+        "id": 1502
+    }
+}
+```
