@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticle;
 use App\Article;
+use App\Http\Requests\UpdateArticle;
 use App\Http\Resources\ArticlesResource;
 
 class ArticleController extends Controller
@@ -35,8 +36,7 @@ class ArticleController extends Controller
         $credentials = $request->only("title", "body");
         $user = auth()->guard()->user();
 
-        $credentials["author_na
-        me"] = $user->name;
+        $credentials["author_name"] = $user->name;
         $credentials["author_id"] = $user->id;
 
         $article = new Article($credentials);
@@ -48,7 +48,7 @@ class ArticleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
     public function show(Article $article)
@@ -60,18 +60,22 @@ class ArticleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateArticle $request, $article)
     {
-        return response()->json(["message" => "Updates an article"]);
+        $credentials = $request->only("title", "body");
+
+        Article::findOrFail($article)->update($credentials);
+
+        return response()->json(["message" => "Article updated successfully", "data" => Article::with("author")->find($article)]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
     public function destroy(Article $article)
