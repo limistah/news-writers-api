@@ -145,3 +145,20 @@ curl --location --request POST 'http://getdev.test/api/auth/login' \
     "error": "Unauthorized"
 }
 ```
+
+##### `/api/auth/logout`
+
+**Request**
+
+```bash
+curl --location --request POST 'http://getdev.test/api/auth/logout' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4Mzk3NTY0OSwiZXhwIjoxNTgzOTc5MjQ5LCJuYmYiOjE1ODM5NzU2NDksImp0aSI6ImVoN1pjanlPd1BEN3VKWTciLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.qOSVRHtsHsxaQ_vMmIbwYnIjNLlxsdDWrsbFw4kxmzQ'
+```
+
+**Response**
+
+```json
+{
+    "message": "Successfully logged out"
+}
+```
