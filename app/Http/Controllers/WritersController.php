@@ -20,7 +20,7 @@ class WritersController extends Controller
      */
     public function index()
     {
-        return WritersResource::collection(User::withCount("articles")->paginate(100));
+        return WritersResource::collection(User::withCount("articles")->paginate(10));
     }
 
     /**

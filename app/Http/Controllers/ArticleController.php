@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreArticle;
 use App\Article;
+use App\Http\Resources\ArticlesResource;
 
 class ArticleController extends Controller
 {
@@ -20,7 +21,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        return response()->json(["message" => "Lists all articles"]);
+        return ArticlesResource::collection(Article::with("author")->paginate(10));
     }
 
     /**
