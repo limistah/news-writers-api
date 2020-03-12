@@ -9,7 +9,7 @@ class WritersController extends Controller
 
     public function __construct()
     {
-        // $this->middleware('auth:api');
+        $this->middleware('auth:api');
     }
     /**
      * Returns all the writers in the application

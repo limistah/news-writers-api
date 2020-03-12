@@ -3,9 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreArticle;
+use App\Article;
 
 class ArticleController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +29,19 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreArticle $request)
     {
-        return response()->json(["message" => "Stores an article"]);
+        $credentials = $request->only("title", "body");
+        $user = auth()->guard()->user();
+
+        $credentials["author_na
+        me"] = $user->name;
+        $credentials["author_id"] = $user->id;
+
+        $article = new Article($credentials);
+        $article->save();
+
+        return response()->json(["message" => "Article saved successfully", "data" => $article]);
     }
 
     /**
