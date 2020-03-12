@@ -412,6 +412,81 @@ Response
 }
 ```
 
+##### `PUT/PATCH /api/articles/{article_id}`
+
+Updates an article created by the authenticated user. If user is not the owner of the article, an error `"message": "This action is unauthorized."` is returned.
+
+Request:
+
+-   **title**: string|min:5 - Title of the article
+-   **body**: string|min:10 - Content of the article
+
+```bash
+curl --location --request DELETE 'http://getdev.test/api/articles/1500' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4NDA1NjUwNywiZXhwIjoxNTg0MDYwMTA3LCJuYmYiOjE1ODQwNTY1MDcsImp0aSI6InJ5NjB3ZmdrZ3A3QVBtTGEiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.3_5GTqThscqjIOhZeybiusJRomOcNdlO_aK1M6oh8Jc' \
+--data-raw '{
+	"body": "Body of the article edited"
+}'
+```
+
+Response
+
+```json
+{
+    "message": "Article saved successfully",
+    "data": {
+        "title": "This is the title of the article",
+        "body": "Body of the article",
+        "author_name": "Aleem Isiaka",
+        "author_id": 51,
+        "updated_at": "2020-03-12T22:17:23.000000Z",
+        "created_at": "2020-03-12T22:17:23.000000Z",
+        "id": 1502
+    }
+}
+```
+
+##### `DELETE /api/articles/{article_id}`
+
+Deletes an article created by the authenticated user. If user is not the owner of the article, an error `"message": "This action is unauthorized."` is returned.
+
+```bash
+curl --location --request PATCH 'http://getdev.test/api/articles/1502' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4NDA1NjUwNywiZXhwIjoxNTg0MDYwMTA3LCJuYmYiOjE1ODQwNTY1MDcsImp0aSI6InJ5NjB3ZmdrZ3A3QVBtTGEiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.3_5GTqThscqjIOhZeybiusJRomOcNdlO_aK1M6oh8Jc'
+```
+
+Response
+
+```json
+{
+    "message": "Article deleted successfully",
+    "data": {
+        "id": 1500,
+        "author_name": "Larue Schiller DDS",
+        "author_id": 151,
+        "title": "Autem doloremque impedit soluta quas dignissimos deleniti odio.",
+        "body": "Cum enim porro asperiores facilis officiis. Aut et cupiditate omnis fugit.",
+        "created_at": "2020-03-12T22:01:44.000000Z",
+        "updated_at": "2020-03-12T22:01:44.000000Z",
+        "author": {
+            "id": 151,
+            "name": "Larue Schiller DDS",
+            "email": "torphy.delia@example.com",
+            "email_verified_at": "2020-03-12T22:01:37.000000Z",
+            "created_at": "2020-03-12T22:01:37.000000Z",
+            "updated_at": "2020-03-12T22:01:37.000000Z",
+            "bio": "Esse temporibus cupiditate possimus modi."
+        }
+    }
+}
+```
+
+---
+
 ### Writers Endpoints
 
 #### `GET /api/writers`
