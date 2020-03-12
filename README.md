@@ -162,3 +162,24 @@ curl --location --request POST 'http://getdev.test/api/auth/logout' \
     "message": "Successfully logged out"
 }
 ```
+
+##### `/api/auth/refresh`
+
+Refreshes JWT token
+
+**Request**
+
+```bash
+curl --location --request POST 'http://getdev.test/api/auth/refresh' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4Mzk3NjEzMiwiZXhwIjoxNTgzOTc5NzMyLCJuYmYiOjE1ODM5NzYxMzIsImp0aSI6IkNRMU0ySFN6bkNlR1lUOFgiLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.v23AzjkAPmKYiqbYsShIfcWm9uZKJ6jZJDaGDr4qGCU'
+```
+
+**Response**
+
+```json
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9yZWZyZXNoIiwiaWF0IjoxNTgzOTc2MTMyLCJleHAiOjE1ODM5Nzk3NTcsIm5iZiI6MTU4Mzk3NjE1NywianRpIjoiQ3hRTUFUUlRyQ0pld01kVSIsInN1YiI6MiwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9.bW9rQTDTyj72-5o7Ca-KFRfNZNUTVEhkmSeQ_3n-vr4",
+    "token_type": "bearer",
+    "expires_in": 3600
+}
+```
