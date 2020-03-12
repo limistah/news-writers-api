@@ -6,6 +6,15 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class WritersResource extends JsonResource
 {
+    public function mapInto($request)
+    {
+        return [
+            "name" => $this->name,
+            "email" => $this->email,
+            "bio" => $this->bio,
+            "articles_count" => $this->articles_count
+        ];
+    }
     /**
      * Transform the resource into an array.
      *
@@ -18,7 +27,7 @@ class WritersResource extends JsonResource
             "name" => $this->name,
             "email" => $this->email,
             "bio" => $this->bio,
-            "total_articles" => $this->articles()->count()
+            "articles_count" => $this->articles_count
         ];
     }
 }

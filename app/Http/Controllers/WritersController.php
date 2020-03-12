@@ -20,18 +20,17 @@ class WritersController extends Controller
      */
     public function index()
     {
-        return WritersResource::collection(User::with("articles")->paginate(100));
-        // return response()->json(["message" => "Returns all writers"]);
+        return WritersResource::collection(User::withCount("articles")->paginate(100));
     }
 
     /**
      * Returns an writer by the specified user id.
      *
-     * @param  int  $author_id
+     * @param  int  $writer
      * @return \Illuminate\Http\Response
      */
-    public function show($author_id)
+    public function show(User $writer)
     {
-        return response()->json(["message" => "Returns a writer"]);
+        return User::withCount("articles")->findOrFail($writer->id);
     }
 }
