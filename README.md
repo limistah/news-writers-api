@@ -302,6 +302,80 @@ Response
 }
 ```
 
+#### `GET /api/articles`
+
+Returns all the writers in the application
+
+Request
+
+```bash
+curl --location --request GET 'http://getdev.test/api/articles/' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4NDA1NjUwNywiZXhwIjoxNTg0MDYwMTA3LCJuYmYiOjE1ODQwNTY1MDcsImp0aSI6InJ5NjB3ZmdrZ3A3QVBtTGEiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.3_5GTqThscqjIOhZeybiusJRomOcNdlO_aK1M6oh8Jc'
+```
+
+Response
+
+```json
+{
+    "data": [
+        {
+            "id": 1004,
+            "author_name": "Kristian Steuber PhD",
+            "author_id": 102,
+            "title": "Omnis eos provident nobis necessitatibus nesciunt.",
+            "body": "Eum amet quia aspernatur beatae nesciunt.",
+            "created_at": "2020-03-12T22:01:37.000000Z",
+            "updated_at": "2020-03-12T22:01:37.000000Z",
+            "author": {
+                "id": 102,
+                "name": "Kristian Steuber PhD",
+                "email": "reynolds.elva@example.net",
+                "email_verified_at": "2020-03-12T22:01:37.000000Z",
+                "created_at": "2020-03-12T22:01:37.000000Z",
+                "updated_at": "2020-03-12T22:01:37.000000Z",
+                "bio": "Nisi voluptatem error maxime qui in aspernatur. Omnis aut consequatur eaque aut aut veniam cupiditate."
+            }
+        },
+        {
+            "id": 1006,
+            "author_name": "Kristian Steuber PhD",
+            "author_id": 102,
+            "title": "Sunt assumenda voluptatibus nobis neque laudantium in molestiae.",
+            "body": "Exercitationem est ducimus cumque quia aut autem.",
+            "created_at": "2020-03-12T22:01:37.000000Z",
+            "updated_at": "2020-03-12T22:01:37.000000Z",
+            "author": {
+                "id": 102,
+                "name": "Kristian Steuber PhD",
+                "email": "reynolds.elva@example.net",
+                "email_verified_at": "2020-03-12T22:01:37.000000Z",
+                "created_at": "2020-03-12T22:01:37.000000Z",
+                "updated_at": "2020-03-12T22:01:37.000000Z",
+                "bio": "Nisi voluptatem error maxime qui in aspernatur. Omnis aut consequatur eaque aut aut veniam cupiditate."
+            }
+        }
+        // ...
+    ],
+    "links": {
+        "first": "http://getdev.test/api/articles?page=1",
+        "last": "http://getdev.test/api/articles?page=50",
+        "prev": null,
+        "next": "http://getdev.test/api/articles?page=2"
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 50,
+        "path": "http://getdev.test/api/articles",
+        "per_page": 10,
+        "to": 10,
+        "total": 497
+    }
+}
+```
+
 #### `GET /api/articles/{article_id}`
 
 Returns a single article with the specified `$id` in the route parameter. Anyone can view a single article
