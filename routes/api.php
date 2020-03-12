@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::post('register', 'AuthController@register');
 
+/**
+ * We are still utilize the auth controllers provided by Laravel for password reset and confirmation
+ */
 Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::post('password/confirm', 'Auth\ConfirmPasswordController@confirm');
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');

@@ -29,10 +29,12 @@ class AuthController extends Controller
      */
     public function register(StoreUser $request)
     {
-        $credentials = $request->input();
+        // Registers a new user after validating agains the StoreUser Request class
+        $credentials = $request->only("email", "password", "name", "bio");
         $credentials["password"] = bcrypt($credentials["password"]);
         $user = User::create($credentials);
 
+        // Authenticate the user so they can perform other tasks after successful registration
         $token = auth()->login($user);
 
         return $this->respondWithToken($token, 201);
@@ -63,6 +65,7 @@ class AuthController extends Controller
      */
     public function me()
     {
+        // Returns the current user attached to the token in the header
         return response()->json($this->guard()->user());
     }
 

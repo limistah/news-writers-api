@@ -84,7 +84,7 @@ php artisan jwt:secret
 
 #### Endpoints
 
-##### `/register`
+##### `POST /register`
 
 Registers a new user into the database. The below fields are expected in the body of the request:
 
@@ -117,7 +117,7 @@ curl --location --request POST 'http://getdev.test/api/register' \
 }
 ```
 
-##### `/api/auth/login`
+##### `POST /api/auth/login`
 
 **Request**
 
@@ -146,7 +146,7 @@ curl --location --request POST 'http://getdev.test/api/auth/login' \
 }
 ```
 
-##### `/api/auth/logout`
+##### `POST /api/auth/logout`
 
 **Request**
 
@@ -163,7 +163,7 @@ curl --location --request POST 'http://getdev.test/api/auth/logout' \
 }
 ```
 
-##### `/api/auth/refresh`
+##### `POST /api/auth/refresh`
 
 Refreshes JWT token
 
