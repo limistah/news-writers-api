@@ -51,9 +51,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        return response()->json(["message" => "Returns Just An Article"]);
+        return Article::with("author")->findOrFail($article->id);
     }
 
     /**
@@ -74,8 +74,10 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        return response()->json(["message" => "Deletes an article"]);
+        $article = Article::with("author")->find($article->id);
+        Article::destroy($article->id);
+        return response()->json(["message" => "Article deleted successfully", "data" => $article]);
     }
 }
