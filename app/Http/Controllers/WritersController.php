@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Writers extends Controller
+class WritersController extends Controller
 {
+
+    public function __construct()
+    {
+        // $this->middleware('auth:api');
+    }
     /**
      * Returns all the writers in the application
      *
@@ -19,10 +24,10 @@ class Writers extends Controller
     /**
      * Returns an writer by the specified user id.
      *
-     * @param  int  $user_id
+     * @param  int  $author_id
      * @return \Illuminate\Http\Response
      */
-    public function show($user_id)
+    public function show($author_id)
     {
         return response()->json(["message" => "Returns a writer"]);
     }

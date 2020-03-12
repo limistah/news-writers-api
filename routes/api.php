@@ -32,3 +32,22 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::post('me', 'AuthController@me');
 });
+
+// Route::group([
+//     'middleware' => 'api',
+//     'prefix' => 'writers'
+// ], function ($router) {
+//     Route::get('/', "Writers@index");
+//     Route::get('/{author_id}', "Writers@show");
+// });
+
+// Route::mid::resource('/', "A");;
+
+// Route::middleware()
+
+Route::group([
+    'middleware' => 'api',
+], function ($router) {
+    Route::resource("articles", "ArticleController");
+    Route::resource("writers", "WritersController")->only("show", "index");
+});
