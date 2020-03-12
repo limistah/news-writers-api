@@ -21,7 +21,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Registers a new user using the passed credentials.
+     * Registers a new user using the passed credentials, and generates a JWT token for further requests
      *
      * @param  \Illuminate\Http\Request  $request
      *
@@ -29,7 +29,9 @@ class AuthController extends Controller
      */
     public function register(StoreUser $request)
     {
-        $user = User::create($request->input());
+        $credentials = $request->input();
+        $credentials["password"] = bcrypt($credentials["password"]);
+        $user = User::create($credentials);
 
         $token = auth()->login($user);
 

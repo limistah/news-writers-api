@@ -84,9 +84,64 @@ php artisan jwt:secret
 
 #### Endpoints
 
-`/register` Registers a new user into the database. The below fields are expected in the body of the request:
+##### `/register`
+
+Registers a new user into the database. The below fields are expected in the body of the request:
 
 -   **name**: required|string
 -   **email**: required|string|email
 -   **password**: required|string|min:8
 -   **bio**: required|string
+
+**Request**
+
+```bash
+curl --location --request POST 'http://getdev.test/api/register' \
+--header 'Accept: application/json' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"name": "Aleem Isiaka",
+	"email": "aleemisiaka@gmail.com",
+	"password": "12345678",
+	"bio": "Some information about myself"
+}'
+```
+
+**Response**
+
+```json
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9yZWdpc3RlciIsImlhdCI6MTU4Mzk3NDM2OSwiZXhwIjoxNTgzOTc3OTY5LCJuYmYiOjE1ODM5NzQzNjksImp0aSI6Ingyc2gySmhVbXI1SzJYUnAiLCJzdWIiOjEsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.rt7PIecfZUXA295d33s1r4BI3bQ1Uxy8sAeJdJ2Qiow",
+    "token_type": "bearer",
+    "expires_in": 3600
+}
+```
+
+##### `/api/auth/login`
+
+**Request**
+
+```bash
+curl --location --request POST 'http://getdev.test/api/auth/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"email": "aleemisiaka@gmail.com",
+	"password": "12345678"
+}'
+```
+
+**Response**
+
+```json
+// Successful response
+{
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4Mzk3NTY0OSwiZXhwIjoxNTgzOTc5MjQ5LCJuYmYiOjE1ODM5NzU2NDksImp0aSI6ImVoN1pjanlPd1BEN3VKWTciLCJzdWIiOjIsInBydiI6Ijg3ZTBhZjFlZjlmZDE1ODEyZmRlYzk3MTUzYTE0ZTBiMDQ3NTQ2YWEifQ.qOSVRHtsHsxaQ_vMmIbwYnIjNLlxsdDWrsbFw4kxmzQ",
+    "token_type": "bearer",
+    "expires_in": 3600
+}
+
+// Unsuccessful response, status code of 401
+{
+    "error": "Unauthorized"
+}
+```
