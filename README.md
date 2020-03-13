@@ -568,3 +568,78 @@ Response
     "articles_count": 6
 }
 ```
+
+### Writer-Articles Endpoints
+
+#### `GET /api/writers/{writer_id}/articles`
+
+Returns all the articles poster by the writer
+Request
+
+```bash
+curl --location --request GET 'http://getdev.test/api/writers/151/articles' \
+--header 'Content-Type: application/json' \
+--header 'Accept: application/json' \
+--header 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9nZXRkZXYudGVzdFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTU4NDA1NjUwNywiZXhwIjoxNTg0MDYwMTA3LCJuYmYiOjE1ODQwNTY1MDcsImp0aSI6InJ5NjB3ZmdrZ3A3QVBtTGEiLCJzdWIiOjUxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.3_5GTqThscqjIOhZeybiusJRomOcNdlO_aK1M6oh8Jc'
+```
+
+Response
+
+```json
+{
+    "data": [
+        {
+            "id": 1491,
+            "author_name": "Larue Schiller DDS",
+            "author_id": 151,
+            "title": "Illo ea ipsam omnis accusantium.",
+            "body": "Ea impedit ducimus cum sint quia. Et aspernatur ad dolorum vel.",
+            "created_at": "2020-03-12T22:01:44.000000Z",
+            "updated_at": "2020-03-12T22:01:44.000000Z",
+            "author": {
+                "id": 151,
+                "name": "Larue Schiller DDS",
+                "email": "torphy.delia@example.com",
+                "email_verified_at": "2020-03-12T22:01:37.000000Z",
+                "created_at": "2020-03-12T22:01:37.000000Z",
+                "updated_at": "2020-03-12T22:01:37.000000Z",
+                "bio": "Esse temporibus cupiditate possimus modi."
+            }
+        },
+        {
+            "id": 1492,
+            "author_name": "Larue Schiller DDS",
+            "author_id": 151,
+            "title": "Qui soluta voluptatem suscipit omnis.",
+            "body": "Dicta repudiandae quis tempora est. Aut eum fugiat magnam laboriosam ut incidunt.",
+            "created_at": "2020-03-12T22:01:44.000000Z",
+            "updated_at": "2020-03-12T22:01:44.000000Z",
+            "author": {
+                "id": 151,
+                "name": "Larue Schiller DDS",
+                "email": "torphy.delia@example.com",
+                "email_verified_at": "2020-03-12T22:01:37.000000Z",
+                "created_at": "2020-03-12T22:01:37.000000Z",
+                "updated_at": "2020-03-12T22:01:37.000000Z",
+                "bio": "Esse temporibus cupiditate possimus modi."
+            }
+        }
+        // ...
+    ],
+    "links": {
+        "first": "http://getdev.test/api/writers/151/articles?page=1",
+        "last": "http://getdev.test/api/writers/151/articles?page=2",
+        "prev": null,
+        "next": "http://getdev.test/api/writers/151/articles?page=2"
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 2,
+        "path": "http://getdev.test/api/writers/151/articles",
+        "per_page": 5,
+        "to": 5,
+        "total": 9
+    }
+}
+```
