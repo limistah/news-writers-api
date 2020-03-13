@@ -569,6 +569,8 @@ Response
 }
 ```
 
+---
+
 ### Writer-Articles Endpoints
 
 #### `GET /api/writers/{writer_id}/articles`
